@@ -1,0 +1,66 @@
+{
+  "author": "Michiel van der Geest <m.van.der.geest@metrological.com>",
+  "contributors": [
+    "Metrological, Wouter <wouter@metrological.com>"
+  ],
+  "name": "ThunderJS",
+  "version": "1.2.5",
+  "license": "apache",
+  "browser": "dist/thunderJS.js",
+  "main": "dist/thunderJS.cjs",
+  "module": "module/thunderJS.js",
+  "scripts": {
+    "test": "tape -r esm tests/**/*.spec.js | tap-diff",
+    "lint": "eslint '**/*.{js}'",
+    "lint:fix": "eslint '**/*.{js}' --fix",
+    "build": "rollup -c",
+    "example:browser": "cd examples && npm install && npm run start:browser",
+    "example:node-cjs": "cd examples && npm install && npm run start:node-cjs",
+    "example:node": "cd examples && npm install && npm run start:node"
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "npm run lint:fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run build && git add dist module"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:WebPlatformForEmbedded/ThunderJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WebPlatformForEmbedded/ThunderJS/issues"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@rollup/plugin-alias": "^3.0.1",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "esm": "^3.2.25",
+    "husky": "^2.4.1",
+    "lint-staged": "^8.2.1",
+    "prettier": "^1.19.1",
+    "rollup": "^1.32.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-cleanup": "^3.1.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-license": "^0.13.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.2",
+    "rollup-plugin-uglify": "^6.0.4",
+    "sinon": "^7.5.0",
+    "tap-diff": "^0.1.1",
+    "tape": "^4.13.2"
+  },
+  "dependencies": {
+    "ws": "^7.2.3"
+  }
+}
